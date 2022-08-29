@@ -1,0 +1,56 @@
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
+import 'package:yehiwot_kal/widgets.dart/app_icon.dart';
+
+class Menu extends StatelessWidget {
+  const Menu({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(children: [
+        Positioned(
+            left: 0,
+            right: 0,
+            child: Container(
+              width: double.maxFinite,
+              height: MediaQuery.of(context).size.height / 1.8,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/a1.jpeg"),
+              )),
+            )),
+        Positioned(
+            top: 45,
+            left: 20,
+            right: 20,
+            child: Row(
+              children: [
+                AppIcon(
+                  icon: Icons.arrow_back_ios,
+                  backgroundColor: Colors.transparent,
+                  iconColor: Colors.white,
+                ),
+              ],
+            )),
+        Positioned(
+            left: 0,
+            right: 0,
+            top: MediaQuery.of(context).size.height / 1.87,
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: SingleChildScrollView(
+                  child: Column(
+                children: [],
+              )),
+            ))
+      ]),
+    );
+  }
+}

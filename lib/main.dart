@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yehiwot_kal/global_variables.dart';
+import 'package:yehiwot_kal/home.dart';
+import 'package:yehiwot_kal/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,11 +19,6 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: GlobalVariables.backgroundColor,
             appBarTheme: AppBarTheme(
                 elevation: 0, iconTheme: IconThemeData(color: Colors.black))),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Home'),
-          ),
-          body: const Center(child: Text('Test')),
-        ));
+        home: Home());
   }
 }

@@ -9,5 +9,8 @@ class GlobalVariables {
     1.0
   ]);
 
-  static const backgroundColor = Colors.white;
+  static const backgroundColor = Colors.black;
+
+//height menu
+
 }
