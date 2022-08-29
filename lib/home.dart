@@ -60,7 +60,7 @@ class Home extends StatelessWidget {
                     image: AssetImage("assets/a1.jpeg"), fit: BoxFit.cover)),
           ),
           CustomText(
-            text: "የህይወት ቃል",
+            text: "አስተውይ ",
             size: 10,
           )
         ],
