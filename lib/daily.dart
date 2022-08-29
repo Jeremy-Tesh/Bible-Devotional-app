@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:yehiwot_kal/menu.dart';
+import 'package:yehiwot_kal/detail_description.dart';
 import 'package:yehiwot_kal/models/Detail.dart';
 import 'package:yehiwot_kal/provider/details.dart';
 import 'package:yehiwot_kal/widgets.dart/custom_text.dart';
@@ -71,7 +71,7 @@ class Daily extends StatelessWidget {
                           height: MediaQuery.of(context).size.height,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage("assets/b1.jpeg"),
+                                  image: lists.first.img,
                                   fit: BoxFit.fitWidth)),
                         ))),
               ),
@@ -86,7 +86,8 @@ class Daily extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Menu(index: index)));
+                                    builder: (context) =>
+                                        DetailDescription(index: index)));
                           },
                           child: weekDevotion(index, lists[index]));
                     }),

@@ -3,7 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:yehiwot_kal/daily.dart';
-import 'package:yehiwot_kal/menu.dart';
+import 'package:yehiwot_kal/detail_description.dart';
 import 'package:yehiwot_kal/models/Lesson.dart';
 import 'package:yehiwot_kal/provider/lessons.dart';
 import 'package:yehiwot_kal/widgets.dart/custom_text.dart';
@@ -37,7 +37,7 @@ class Home extends StatelessWidget {
                   image: AssetImage("assets/a1.jpeg"),
                 )),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

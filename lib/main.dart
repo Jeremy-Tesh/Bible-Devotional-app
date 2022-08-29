@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yehiwot_kal/daily.dart';
 import 'package:yehiwot_kal/global_variables.dart';
 import 'package:yehiwot_kal/home.dart';
-import 'package:yehiwot_kal/menu.dart';
+import 'package:yehiwot_kal/detail_description.dart';
 import 'package:provider/provider.dart';
 import 'package:yehiwot_kal/provider/details.dart';
 import 'package:yehiwot_kal/provider/lessons.dart';

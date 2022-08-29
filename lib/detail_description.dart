@@ -6,9 +6,9 @@ import 'package:yehiwot_kal/provider/details.dart';
 import 'package:yehiwot_kal/widgets.dart/app_icon.dart';
 import 'package:yehiwot_kal/widgets.dart/custom_text.dart';
 
-class Menu extends StatelessWidget {
+class DetailDescription extends StatelessWidget {
   int index;
-  Menu({Key? key, required this.index}) : super(key: key);
+  DetailDescription({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +27,22 @@ class Menu extends StatelessWidget {
                 image: AssetImage("assets/a1.jpeg"),
               )),
             )),
-        // Positioned(
-        //     top: 45,
-        //     left: 20,
-        //     right: 20,
-        //     child: Row(
-        //       children: [
-        //         AppIcon(
-        //           icon: Icons.arrow_back_ios,
-        //           backgroundColor: Colors.transparent,
-        //           iconColor: Colors.white,
-        //         ),
-        //       ],
-        //     )),
+        Positioned(
+            top: 45,
+            left: 20,
+            right: 20,
+            child: Row(
+              children: [
+                AppIcon(
+                  icon: Icons.arrow_back_ios,
+                  backgroundColor: Colors.transparent,
+                  iconColor: Colors.white,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            )),
         Positioned(
             left: 0,
             right: 0,
