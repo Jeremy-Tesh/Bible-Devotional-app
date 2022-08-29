@@ -1,51 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+import 'package:yehiwot_kal/daily.dart';
+import 'package:yehiwot_kal/menu.dart';
+import 'package:yehiwot_kal/models/Lesson.dart';
+import 'package:yehiwot_kal/provider/lessons.dart';
 import 'package:yehiwot_kal/widgets.dart/custom_text.dart';
+import 'package:yehiwot_kal/widgets.dart/navbar.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
   PageController pageController = PageController(viewportFraction: 0.85);
   @override
   Widget build(BuildContext context) {
+    final lesson = Provider.of<Lessons>(context).lessons;
     return Scaffold(
+      drawer: Drawer(
+        child: NavBar(),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.white,
-        ),
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomText(text: "የህይወት ቃል", size: 25),
-                CustomText(text: "see all", size: 14),
-              ],
-            ),
-            Container(
-                height: 240,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
                 width: double.maxFinite,
-                child: ListView.builder(
-                  controller: pageController,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (context, position) {
-                    return _buildPageItem(position);
-                  },
+                height: MediaQuery.of(context).size.height / 2.4,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/a1.jpeg"),
                 )),
-          ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(text: "የህይወት ቃል", size: 25),
+                  CustomText(text: "see all", size: 14),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                  height: 280,
+                  width: double.maxFinite,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                  child: ListView.builder(
+                    controller: pageController,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: lesson.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Daily(index: index)));
+                          },
+                          child: _buildPageItem(lesson[index]));
+                    },
+                  )),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(Lesson lesson) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -55,13 +85,16 @@ class Home extends StatelessWidget {
           Container(
             height: 200,
             width: 120,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/a1.jpeg"), fit: BoxFit.cover)),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(image: lesson.img, fit: BoxFit.cover)),
           ),
-          CustomText(
-            text: "አስተውይ ",
-            size: 10,
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: CustomText(
+              text: lesson.title,
+              size: 15,
+            ),
           )
         ],
       ),

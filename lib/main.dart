@@ -4,6 +4,7 @@ import 'package:yehiwot_kal/global_variables.dart';
 import 'package:yehiwot_kal/home.dart';
 import 'package:yehiwot_kal/menu.dart';
 import 'package:provider/provider.dart';
+import 'package:yehiwot_kal/provider/details.dart';
 import 'package:yehiwot_kal/provider/lessons.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => Lessons()),
+        ChangeNotifierProvider(create: (ctx) => Details()),
       ],
       child: MaterialApp(
           title: 'Yehiwot  Kal',

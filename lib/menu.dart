@@ -1,13 +1,18 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yehiwot_kal/provider/details.dart';
 import 'package:yehiwot_kal/widgets.dart/app_icon.dart';
+import 'package:yehiwot_kal/widgets.dart/custom_text.dart';
 
 class Menu extends StatelessWidget {
-  const Menu({Key? key}) : super(key: key);
+  int index;
+  Menu({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final details = Provider.of<Details>(context).details;
     return Scaffold(
       body: Stack(children: [
         Positioned(
@@ -22,19 +27,19 @@ class Menu extends StatelessWidget {
                 image: AssetImage("assets/a1.jpeg"),
               )),
             )),
-        Positioned(
-            top: 45,
-            left: 20,
-            right: 20,
-            child: Row(
-              children: [
-                AppIcon(
-                  icon: Icons.arrow_back_ios,
-                  backgroundColor: Colors.transparent,
-                  iconColor: Colors.white,
-                ),
-              ],
-            )),
+        // Positioned(
+        //     top: 45,
+        //     left: 20,
+        //     right: 20,
+        //     child: Row(
+        //       children: [
+        //         AppIcon(
+        //           icon: Icons.arrow_back_ios,
+        //           backgroundColor: Colors.transparent,
+        //           iconColor: Colors.white,
+        //         ),
+        //       ],
+        //     )),
         Positioned(
             left: 0,
             right: 0,
@@ -43,11 +48,11 @@ class Menu extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
+                color: Colors.black,
               ),
               child: SingleChildScrollView(
                   child: Column(
-                children: [],
+                children: [CustomText(text: details[index].description)],
               )),
             ))
       ]),

@@ -2,11 +2,16 @@ import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+import 'package:yehiwot_kal/menu.dart';
+import 'package:yehiwot_kal/models/Detail.dart';
+import 'package:yehiwot_kal/provider/details.dart';
 import 'package:yehiwot_kal/widgets.dart/custom_text.dart';
 import 'package:yehiwot_kal/widgets.dart/navbar.dart';
 
 class Daily extends StatelessWidget {
-  Daily({Key? key}) : super(key: key);
+  int index;
+  Daily({Key? key, required this.index}) : super(key: key);
   PageController pageController = PageController(viewportFraction: 0.85);
   PageController page = PageController();
   List<SideMenuItem> items = [
@@ -40,24 +45,11 @@ class Daily extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lists = Provider.of<Details>(context)
+        .details
+        .where((element) => element.id == index.toString())
+        .toList();
     return Scaffold(
-      drawer: Drawer(child: NavBar()
-
-          // SideMenu(
-          //   // Page controller to manage a PageView
-          //   controller: page,
-          //   // Will shows on top of all items, it can be a logo or a Title text
-          //   title: Icon(Icons.menu),
-          //   // Will show on bottom of SideMenu when displayMode was SideMenuDisplayMode.open
-          //   footer: Text('demo'),
-          //   // Notify when display mode changed
-          //   onDisplayModeChanged: (mode) {
-          //     print(mode);
-          //   },
-          //   // List of SideMenuItem to show them on SideMenu
-          //   items: items,
-          // ),
-          ),
       appBar: AppBar(
         actions: [
           Icon(Icons.settings),
@@ -83,11 +75,21 @@ class Daily extends StatelessWidget {
                                   fit: BoxFit.fitWidth)),
                         ))),
               ),
+              SizedBox(height: 5),
               Container(
                 height: MediaQuery.of(context).size.height - 400,
                 child: ListView.builder(
-                    itemCount: 4,
-                    itemBuilder: (context, index) => weekDevotion()),
+                    itemCount: lists.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Menu(index: index)));
+                          },
+                          child: weekDevotion(index, lists[index]));
+                    }),
               )
             ],
           ),
@@ -96,12 +98,15 @@ class Daily extends StatelessWidget {
     );
   }
 
-  ListTile weekDevotion() {
+  ListTile weekDevotion(int index, Detail list) {
     return ListTile(
-      leading: Image(image: AssetImage("assets/a1.jpeg")),
-      title: CustomText(text: "week1"),
+      leading: Image(image: list.img),
+      title: CustomText(
+        text: list.title,
+        size: 16,
+      ),
       subtitle: CustomText(
-        text: "mon-fri",
+        text: list.date,
         size: 12,
       ),
       hoverColor: Colors.blueGrey,
