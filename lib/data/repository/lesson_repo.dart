@@ -8,7 +8,6 @@ class LessonRepo extends GetxService {
   LessonRepo({required this.apiClient});
 
   Future<Response> getLessonDataList() async {
-    return await apiClient
-        .getData("https://wordoflifeapi.herokuapp.com/lessons");
+    return await apiClient.getData("/lessons");
   }
 }

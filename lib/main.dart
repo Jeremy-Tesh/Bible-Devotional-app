@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
+import 'package:yehiwot_kal/controllers/lesson_data_controller.dart';
 import 'package:yehiwot_kal/daily.dart';
 import 'package:yehiwot_kal/global_variables.dart';
 import 'package:yehiwot_kal/home.dart';
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.find<LessonDataController>().getLessonDataList();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => Lessons()),

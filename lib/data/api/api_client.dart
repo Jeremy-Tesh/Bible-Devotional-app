@@ -2,7 +2,7 @@ import 'package:get/get_connect.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ApiClient extends GetConnect implements GetxService {
-  late String token;
+  String? token;
   final String appBaseUrl;
   late Map<String, String> _mainHeaders;
 
