@@ -1,13 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+const bodyparser =require('body-parser')
 const app = express();
 
 //Import Route
 const lessonsRoute =  require('./routes/lessons')
 
 //middleware
+app.use(bodyparser.json())
 app.use('/lessons',lessonsRoute);
 
 //routes
