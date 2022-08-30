@@ -12,9 +12,7 @@ app.use(bodyparser.json())
 app.use('/lessons',lessonsRoute);
 
 //routes
-app.get('/',(req,res)=>{
-    res.send('Home')
-})
+
 
 
 //Database connection
