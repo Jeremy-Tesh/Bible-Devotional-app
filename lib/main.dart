@@ -6,8 +6,11 @@ import 'package:yehiwot_kal/detail_description.dart';
 import 'package:provider/provider.dart';
 import 'package:yehiwot_kal/provider/details.dart';
 import 'package:yehiwot_kal/provider/lessons.dart';
+import 'helper/dependencies.dart' as dep;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
