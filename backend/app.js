@@ -3,6 +3,17 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const bodyparser =require('body-parser')
 const app = express();
+const cors = require('cors')
+
+
+
+
+
+//Cors middleware
+app.use(cors());
+
+
+
 
 //Import Route
 const lessonsRoute =  require('./routes/lessons')
